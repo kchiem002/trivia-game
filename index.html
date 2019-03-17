@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Parks & Rec Trivia</title>
+    <link type="text/css" rel="stylesheet" href="./assets/css/reset.css">
+    <link type="text/css" rel="stylesheet" href="./assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Bevan" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <audio id="theme-song">
+            <source type="audio/mp3" src="./assets/images/parks-and-rec-theme-song.mp3" loop>
+        </audio>
+        <img id="logo" src="./assets/images/parks-logo.png" alt="Parks and Recreation Logo">
+    </header>
+    <div id="game-box">
+        <div id="question-box">
+            <img id="cast-image" src="./assets/images/parks-and-rec-cast.jpg" alt="Cast Image">
+        </div>
+        <div id="answer-box">
+            <div id="answer-1">
+            <button onclick="startGame()" id="start-button">Start Trivia</button>
+            </div>
+            <div id="answer-2"></div>
+            <div id="answer-3"></div>
+            <div id="answer-4"></div>
+        </div>
+        <div id="timer-box"></div>
+    </div>
+
+<script type="text/javascript" src="./assets/javascript/app.js"></script>
+</body>
+</html>

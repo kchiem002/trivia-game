@@ -1,0 +1,93 @@
+html {
+    box-sizing: border-box;
+    text-align: center;
+    background: url("../images/park-image.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+h1, h2 {
+    font-family: 'Bevan', cursive;
+    font-size: 30pt;
+    color: #339933;
+    border: 2px solid white;
+    background-color: white;
+    margin: 15px;
+    padding: 10px;
+}
+
+h2 {
+    margin-right: 200px;
+    margin-left: 200px;
+    font-size: 25pt;
+}
+
+h2:hover {
+    opacity: 0.8;
+    font-size: 27pt;
+    color: black;
+}
+
+h3 {
+    font-family: 'Bevan', cursive;
+    font-size: 25pt;
+    color: white;
+    background-color: #339933;
+    margin-top: 50px;
+    margin-left: 300px;
+    margin-right: 300px;
+    padding: 10px;
+    text-shadow: 2px 2px black;
+    box-shadow: 2px 2px black;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+#logo {
+    width: 600px;
+}
+
+#logo:hover {
+    opacity: 0.8;
+}
+
+#cast-image {
+    margin: 10px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+#cast-image:hover {
+    opacity: 0.8;
+}
+
+#start-button {
+    color: white;
+    background-color: #339933;
+    border: 1px solid #339933;
+    font-size: 35pt;
+    text-shadow: 2px 2px black;
+    box-shadow: 2px 2px black;
+    border-radius: 12px    ;
+    -webkit-border-radius: 12px    ;
+    -moz-border-radius: 12px    ;
+    -ms-border-radius: 12px    ;
+    -o-border-radius: 12px    ;
+    margin: 20px;
+    font-family: 'Bevan', cursive;
+}
+
+#start-button:hover {
+    border: 3px solid white;
+    font-size: 36pt; 
+}
+
+
