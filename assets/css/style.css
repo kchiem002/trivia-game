@@ -52,10 +52,6 @@ h3 {
     width: 600px;
 }
 
-#logo:hover {
-    opacity: 0.8;
-}
-
 #cast-image {
     margin: 10px;
     border-radius: 12px;
