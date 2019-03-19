@@ -13,69 +13,122 @@ let gameArray = [
     {
         question: "Where is Tom Haverford from?",
         answers: ["South Carolina", "Connecticutt", "Libya", "India"],
-        correctAnswer: "Libya",
-        answerImage: ""
+        correctAnswer: "South Carolina",
+        answerImage: `<img id="answer-image" src="./assets/images/tom-origin.jpg">`
     },
     {
         question: "What is the name of Ron's saxophone playing alter-ego?",
         answers: ["Ron Dunn", "Ringo Starr", "Duke Silver", "Harry Mulligan"],
-        answerImage: ""
+        correctAnswer: "Duke Silver",
+        answerImage: `<img id="answer-image" src="./assets/images/ron-alter-ego.jpg">`
     },
     {
         question: "What is Andy Dwyer's band name?",
-        answers: "",
-        answerImage: "",
-    }
+        answers: ["Mouse Rat", "Fourskin", "Scarecrow Boat", "Just the Tip"],
+        correctAnswer: "Mouse Rat",
+        answerImage: `<img id="answer-image" src="./assets/images/mouse-rat.jpg">`    
+    },
 ]
-
-const shuffle = (a) => {
-    var j, x, i
-    for (i = a.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1))
-      x = a[i]
-      a[i] = a[j]
-      a[j] = x
-    }
-    return a
-  }
+let randQ = Math.floor(Math.random() * 4)
 
 const startGame = _ => {
     correctAnswersCount = 0
     wrongAnswersCount = 0
     unansweredCount = 0
     timer = 21
-    question = gameArray[0].question
-    answers = gameArray[0].answers
-    correctAnswer = gameArray[0].correctAnswer
+    question = gameArray[randQ].question
+    answers = gameArray[randQ].answers
+    correctAnswer = gameArray[randQ].correctAnswer
+    answerImage = gameArray[randQ].answerImage
 
+    themeSong.play()
     setInterval(_ => {
         timer--
         document.querySelector('#timer-box').innerHTML = '<h3 id="timer">Time Remaining: ' + timer + ' seconds'
-        return timer
+
+        if (timer <= 0) {
+            unansweredCount++
+            console.log(unansweredCount)
+            document.querySelector('#question-box').innerHTML = '<h1> Too slow. The correct answer is ' + correctAnswer
+            document.querySelector('#answer-box').innerHTML = answerImage
+            document.querySelector('#next-question').innerHTML = '<h3 id="next-button">Next Question</h3>'
+        }
     }, 1000)
 
     document.querySelector('#question-box').innerHTML = '<h1 id="question">' + question + '</h1>'
-    document.querySelector('#answer-box').innerHTML = '<div><h2 class="answer">' + answers[0] + '</div><div><h2 class="answer">' + answers[1] + '</div><div><h2 class="answer">'+ answers[2] + '</div>' + '</div><div><h2 class="answer">'+ answers[3] + '</div>'
+    document.querySelector('#answer-box').innerHTML = '<div><h2 class="answer">' + answers[0] + '</div><div><h2 class="answer">' + answers[1] + '</div><div><h2 class="answer">' + answers[2] + '</div>' + '</div><div><h2 class="answer">' + answers[3] + '</div>'
+    
+    //event listener for answer selection
+    document.addEventListener('click', event => {
+        answerImage = gameArray[randQ].answerImage
+        correctAnswer = gameArray[randQ].correctAnswer
+        if (event.target.innerHTML === correctAnswer) {
+            console.log(correctAnswersCount)
+            correctAnswersCount++
+            document.querySelector('#question-box').innerHTML = '<h1>That is Correct!</h1>'
+            document.querySelector('#answer-box').innerHTML = answerImage
+            document.querySelector('#next-question').innerHTML = '<h3 id="next-button">Next Question</h3>'
+            // clearInterval()
+        }
+        else if (event.target.innerHTML !== correctAnswer && event.target.className === 'answer') {
+            console.log("wrong")
+            wrongAnswersCount++
+            document.querySelector('#question-box').innerHTML = '<h1> Wrong! The correct answer is ' + correctAnswer
+            document.querySelector('#answer-box').innerHTML = answerImage
+            document.querySelector('#next-question').innerHTML = '<h3 id="next-button">Next Question</h3>'
+            // clearInterval()
+        }
+    })
 }
 
 
-document.addEventListener('click', event => {
-    answerImage = gameArray[0].answerImage
-    correctAnswer = gameArray[0].correctAnswer
-    if (event.target.innerHTML === correctAnswer) {
-        console.log(correctAnswersCount)
-        correctAnswersCount++
-        document.querySelector('#question-box').innerHTML = '<h1>That is Correct!</h1>'
-        document.querySelector('#answer-box').innerHTML = answerImage
-        document.querySelector('#timer-box').innerHTML = '<h3 id="next-button">Next Question</h3>'
-    }
-    else if (event.target.innerHTML !== correctAnswer && event.target.className === 'answer') {
-        console.log("wrong")
-        wrongAnswersCount++
-        document.querySelector('#question-box').innerHTML = '<h1> Wrong! The correct answer is ' + correctAnswer
-        document.querySelector('#answer-box').innerHTML = answerImage
-    }
-})
+const startGame2 = _ => {
+    correctAnswersCount = 0
+    wrongAnswersCount = 0
+    unansweredCount = 0
+    timer = 21
+    question = gameArray[randQ].question
+    answers = gameArray[randQ].answers
+    correctAnswer = gameArray[randQ].correctAnswer
+
+    // setInterval(_ => {
+    //     timer--
+    //     document.querySelector('#timer-box').innerHTML = '<h3 id="timer">Time Remaining: ' + timer + ' seconds'
+    // }, 1000)
+
+    document.querySelector('#question-box').innerHTML = '<h1 id="question">' + question + '</h1>'
+    document.querySelector('#answer-box').innerHTML = '<div><h2 class="answer">' + answers[0] + '</div><div><h2 class="answer">' + answers[1] + '</div><div><h2 class="answer">' + answers[2] + '</div>' + '</div><div><h2 class="answer">' + answers[3] + '</div>'
+    
+    //event listener for answer selection
+    document.addEventListener('click', event => {
+        answerImage = gameArray[randQ].answerImage
+        correctAnswer = gameArray[randQ].correctAnswer
+        if (event.target.innerHTML === correctAnswer) {
+            console.log(correctAnswersCount)
+            correctAnswersCount++
+            document.querySelector('#question-box').innerHTML = '<h1>That is Correct!</h1>'
+            document.querySelector('#answer-box').innerHTML = answerImage
+            document.querySelector('#next-question').innerHTML = '<h3 id="next-button">Next Question</h3>'
+            // clearInterval()
+        }
+        else if (event.target.innerHTML !== correctAnswer && event.target.className === 'answer') {
+            console.log("wrong")
+            wrongAnswersCount++
+            document.querySelector('#question-box').innerHTML = '<h1> Wrong! The correct answer is ' + correctAnswer
+            document.querySelector('#answer-box').innerHTML = answerImage
+            document.querySelector('#next-question').innerHTML = '<h3 id="next-button">Next Question</h3>'
+            // clearInterval()
+        }
+        else if (timer <= 0) {
+            unansweredCount++
+        }
+    })
+    document.querySelector('#next-question').addEventListener('click', startGame2())
+
+}
+
+
+
 
 // const checkUserGuess = () => {
 //     console.log("checkUserGuess")
