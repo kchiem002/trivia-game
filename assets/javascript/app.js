@@ -1,34 +1,102 @@
-let correctAnswersCount = 0
-let wrongAnswersCount = 0
-let unansweredCount = 0
-let count
+let correctAnswersCount
+let wrongAnswersCount
+let unansweredCount
+let timer
 let themeSong = document.querySelector('#theme-song')
 let gameArray = [
     {
-        question: "Our sweet leader, Leslie Knope, was born in which city?",
-        answers: ["Pawnee", "Indianapolis", "Eagleton"],
-        correctAnswer: "Eagleton"
+        question: "Leslie Knope was born in which city?",
+        answers: ["Pawnee", "Indianapolis", "Bloomington", "Eagleton"],
+        correctAnswer: "Eagleton",
+        answerImage: `<img id="answer-image" src="./assets/images/leslie-eagleton.jpg">`
     },
     {
         question: "Where is Tom Haverford from?",
-        answer1: "South Carolina",
-        answer2: "Connecticutt",
-        answer3: "Libya",
+        answers: ["South Carolina", "Connecticutt", "Libya", "India"],
+        correctAnswer: "Libya",
+        answerImage: ""
     },
+    {
+        question: "What is the name of Ron's saxophone playing alter-ego?",
+        answers: ["Ron Dunn", "Ringo Starr", "Duke Silver", "Harry Mulligan"],
+        answerImage: ""
+    },
+    {
+        question: "What is Andy Dwyer's band name?",
+        answers: "",
+        answerImage: "",
+    }
 ]
-const checkUserGuess = () => {
-    console.log("checkUserGuess")
-}
+
+const shuffle = (a) => {
+    var j, x, i
+    for (i = a.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1))
+      x = a[i]
+      a[i] = a[j]
+      a[j] = x
+    }
+    return a
+  }
 
 const startGame = _ => {
-    console.log("start game")
-    for (let i = 0; i < gameArray[0].answers.length; i++) {
-        let guessButton = document.createElement('h2')
-        guessButton.innerHTML = gameArray[0].answers[i]
-        guessButton.onclick = checkUserGuess
-        document.querySelector('#answer-box').append(guessButton)
-    }
+    correctAnswersCount = 0
+    wrongAnswersCount = 0
+    unansweredCount = 0
+    timer = 21
+    question = gameArray[0].question
+    answers = gameArray[0].answers
+    correctAnswer = gameArray[0].correctAnswer
+
+    setInterval(_ => {
+        timer--
+        document.querySelector('#timer-box').innerHTML = '<h3 id="timer">Time Remaining: ' + timer + ' seconds'
+        return timer
+    }, 1000)
+
+    document.querySelector('#question-box').innerHTML = '<h1 id="question">' + question + '</h1>'
+    document.querySelector('#answer-box').innerHTML = '<div><h2 class="answer">' + answers[0] + '</div><div><h2 class="answer">' + answers[1] + '</div><div><h2 class="answer">'+ answers[2] + '</div>' + '</div><div><h2 class="answer">'+ answers[3] + '</div>'
 }
+
+
+document.addEventListener('click', event => {
+    answerImage = gameArray[0].answerImage
+    correctAnswer = gameArray[0].correctAnswer
+    if (event.target.innerHTML === correctAnswer) {
+        console.log(correctAnswersCount)
+        correctAnswersCount++
+        document.querySelector('#question-box').innerHTML = '<h1>That is Correct!</h1>'
+        document.querySelector('#answer-box').innerHTML = answerImage
+        document.querySelector('#timer-box').innerHTML = '<h3 id="next-button">Next Question</h3>'
+    }
+    else if (event.target.innerHTML !== correctAnswer && event.target.className === 'answer') {
+        console.log("wrong")
+        wrongAnswersCount++
+        document.querySelector('#question-box').innerHTML = '<h1> Wrong! The correct answer is ' + correctAnswer
+        document.querySelector('#answer-box').innerHTML = answerImage
+    }
+})
+
+// const checkUserGuess = () => {
+//     console.log("checkUserGuess")
+// }
+
+// const startGame = _ => {
+//     // themeSong.play()
+//     console.log("start game")
+//     let triviaQuestion = document.createElement('h1')
+//     document.querySelector('#theme-photo').innerHTML = ""
+//     triviaQuestion.innerHTML = gameArray[0].question
+//     document.querySelector('question-box').append(triviaQuestion)
+
+//     for (let i = 0; i < gameArray[0].answers.length; i++) {
+//         let guessButton = document.createElement('h2')
+//         guessButton.innerHTML = gameArray[0].answers[i]
+//         guessButton.onclick = checkUserGuess
+//         document.querySelector('#start-box').innerHTML = ""
+//         document.querySelector('#answer-box').append(guessButton)
+//     }
+// }
 // const startGame = _ => {
 //     let count = 20
 //     //play theme song
