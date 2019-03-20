@@ -30,14 +30,16 @@ let correctAnswersCount = 0
 let wrongAnswersCount = 0
 let unansweredCount = 0
 let timer = 16
+let myTimer = ''
 let question = gameArray[i].question
 let answers = gameArray[i].answers
 let correctAnswer = gameArray[i].correctAnswer
 let answerImage = gameArray[i].answerImage
 
+
 //function to start timer
 const displayTimer = _ => {
-    setInterval(_ => {
+    myTimer = setInterval(_ => {
         timer--
         document.querySelector('#timer-box').innerHTML = '<h3 id="timer">Time Remaining: ' + timer + ' seconds'
 
@@ -70,7 +72,7 @@ const checkUserGuess = _ => {
             document.querySelector('#question-box').innerHTML = '<h1>That is Correct!</h1>'
             document.querySelector('#answer-box').innerHTML = answerImage
             document.querySelector('#next-question').innerHTML = '<h3 class="next-button">Next Question</h3>'
-            clearInterval(timer)
+            clearInterval(myTimer)
 
         }
         else if (event.target.innerHTML !== correctAnswer && event.target.className === 'answer') {
@@ -79,7 +81,7 @@ const checkUserGuess = _ => {
             document.querySelector('#question-box').innerHTML = '<h1> Wrong! The correct answer is ' + correctAnswer
             document.querySelector('#answer-box').innerHTML = answerImage
             document.querySelector('#next-question').innerHTML = '<h3 class="next-button">Next Question</h3>'
-            clearInterval(timer)
+            clearInterval(myTimer)
         }
     })
 }
@@ -92,3 +94,7 @@ document.addEventListener('click', event => {
         clearInterval(timer)
     }
 })
+
+
+//I don't know why my clearInterval function is not working so I couldn't stop the timer from counting down
+//
