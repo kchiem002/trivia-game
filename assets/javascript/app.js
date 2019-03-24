@@ -57,7 +57,7 @@ let gameArray = [
     {
         question: "A food tasting left Ben, Chris and Ron sick the next day. What was the dish?",
         answers: ["Macaroni and Cheese", "Cheesecake", "Lobster Bisque", "Calzone"],
-        correctAnswer: "A requiem for a Tuesday",
+        correctAnswer: "Calzone",
         answerImage: `<img id="answer-image" src="./assets/images/calzones-sick.png">`
     },
     {
