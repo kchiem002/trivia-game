@@ -39,8 +39,9 @@ let answerImage = gameArray[i].answerImage
 //function to get question, function call is in HTML
 const getQuestion = _ => {
     if (i >= gameArray.length) {
-        document.querySelector('#question-box').innerHTML = ""
-        document.querySelector('#answer-box').innerHTML = ""
+        document.querySelector('#question-box').innerHTML = `<h1>Game over! Here's your score:</h1>`
+        document.querySelector('#answer-box').innerHTML = `<h1>Correct Answers: ${correctAnswersCount} <br><br> Wrong Answers: ${wrongAnswersCount} <br><br> Missed Answers: ${unansweredCount}</h1>`
+        document.querySelector('#timer-box').innerHTML = `<h3 id="play-again">Play Again</h3>`
     }
     else {
         timer = 16
@@ -64,9 +65,11 @@ const displayTimer = _ => {
 
         if (timer <= 0) {
             unansweredCount++
+            i++
             document.querySelector('#question-box').innerHTML = '<h1> Too slow. The correct answer is ' + correctAnswer
             document.querySelector('#answer-box').innerHTML = answerImage
             document.querySelector('#next-question').innerHTML = '<h3 class="next-button">Next Question</h3>'
+            document.querySelector('#timer-box').innerHTML = ``
             clearInterval(myTimer)
         }
     }, 1000)
@@ -79,17 +82,20 @@ const checkUserGuess = _ => {
             document.querySelector('#question-box').innerHTML = '<h1>That is Correct!</h1>'
             document.querySelector('#answer-box').innerHTML = answerImage
             document.querySelector('#next-question').innerHTML = '<h3 class="next-button">Next Question</h3>'
+            document.querySelector('#timer-box').innerHTML = ``
         }
         else if (event.target.innerHTML !== correctAnswer && event.target.className === 'answer') {
             wrongAnswersCount++
             document.querySelector('#question-box').innerHTML = '<h1> Wrong! The correct answer is ' + correctAnswer
             document.querySelector('#answer-box').innerHTML = answerImage
             document.querySelector('#next-question').innerHTML = '<h3 class="next-button">Next Question</h3>'
+            document.querySelector('#timer-box').innerHTML = ``
         }
         i++
         clearInterval(myTimer)
 }
 
+//event listeners for next question button, user answer, and play again
 document.addEventListener('click', event => {
     if (event.target.className === 'next-button') {
         getQuestion()
@@ -97,6 +103,10 @@ document.addEventListener('click', event => {
     }
     else if (event.target.className === 'answer') {
         checkUserGuess()
+    }
+    else if (event.target.id === 'play-again') {
+        i = 0
+        getQuestion()
     }
 })
 
