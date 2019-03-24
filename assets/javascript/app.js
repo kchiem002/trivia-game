@@ -19,7 +19,7 @@ let gameArray = [
         answerImage: `<img id="answer-image" src="./assets/images/ron-alter-ego.jpg">`
     },
     {
-        question: "What is Andy Dwyer's band name?",
+        question: "What is Andy Dwyer's best known band name?",
         answers: ["Mouse Rat", "Fourskin", "Scarecrow Boat", "Just the Tip"],
         correctAnswer: "Mouse Rat",
         answerImage: `<img id="answer-image" src="./assets/images/mouse-rat.jpg">`
@@ -66,6 +66,18 @@ let gameArray = [
         correctAnswer: "Tom Haverford",
         answerImage: `<img id="answer-image" src="./assets/images/ron-shot.jpg">`
     },
+    {
+        question: "What does Donna love the most?",
+        answers: ["Her dog", "Her Mercedes", "Tweeting", "A spa day"],
+        correctAnswer: "Her Mercedes",
+        answerImage: `<img id="answer-image" src="./assets/images/donna-mercedes.gif">`
+    },
+    {
+        question: "Who does April openly dislike the most?",
+        answers: ["Ann Perkins", "Tom Haverford", "Jeremy Jamm", "Larry Geirgich"],
+        correctAnswer: "Ann Perkins",
+        answerImage: `<img id="answer-image" src="./assets/images/april-and-ann.gif">`
+    },
 ]
 
 let i = 0
@@ -111,7 +123,7 @@ const displayTimer = _ => {
         if (timer <= 0) {
             unansweredCount++
             i++
-            document.querySelector('#question-box').innerHTML = '<h1> Too slow. The correct answer is ' + correctAnswer
+            document.querySelector('#question-box').innerHTML = '<h1> Too slow. The correct answer is ' + correctAnswer + '.'
             document.querySelector('#answer-box').innerHTML = answerImage
             document.querySelector('#next-question').innerHTML = '<h4 class="next-button">Next Question</h4>'
             document.querySelector('#timer-box').innerHTML = ``
@@ -131,7 +143,7 @@ const checkUserGuess = _ => {
         }
         else if (event.target.innerHTML !== correctAnswer && event.target.className === 'answer') {
             wrongAnswersCount++
-            document.querySelector('#question-box').innerHTML = '<h1> Wrong! The correct answer is ' + correctAnswer
+            document.querySelector('#question-box').innerHTML = '<h1> Wrong! The correct answer is ' + correctAnswer + '.'
             document.querySelector('#answer-box').innerHTML = answerImage
             document.querySelector('#next-question').innerHTML = '<h4 class="next-button">Next Question</h4>'
             document.querySelector('#timer-box').innerHTML = ``
