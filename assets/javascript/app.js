@@ -40,7 +40,7 @@ let answerImage = gameArray[i].answerImage
 const getQuestion = _ => {
     if (i >= gameArray.length) {
         document.querySelector('#question-box').innerHTML = `<h1>Game over! Here's your score:</h1>`
-        document.querySelector('#answer-box').innerHTML = `<h1>Correct Answers: ${correctAnswersCount} <br><br> Wrong Answers: ${wrongAnswersCount} <br><br> Missed Answers: ${unansweredCount}</h1>`
+        document.querySelector('#answer-box').innerHTML = `<h1>Correct Answers: ${correctAnswersCount} / ${gameArray.length} <br><br> Wrong Answers: ${wrongAnswersCount} / ${gameArray.length} <br><br> Missed Answers: ${unansweredCount} / ${gameArray.length}</h1>`
         document.querySelector('#timer-box').innerHTML = `<h3 id="play-again">Play Again</h3>`
     }
     else {
