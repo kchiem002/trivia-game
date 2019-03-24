@@ -106,6 +106,9 @@ document.addEventListener('click', event => {
     }
     else if (event.target.id === 'play-again') {
         i = 0
+        correctAnswersCount = 0
+        wrongAnswersCount = 0
+        unansweredCount = 0
         getQuestion()
     }
 })
