@@ -24,7 +24,50 @@ let gameArray = [
         correctAnswer: "Mouse Rat",
         answerImage: `<img id="answer-image" src="./assets/images/mouse-rat.jpg">`
     },
+    {
+        question: "Which character did not understand the town's obsession with Lil-Sebastian?",
+        answers: ["Ron Swanson", "Donna Meagle", "Ben Wyatt", "April Ludgate"],
+        correctAnswer: "Ben Wyatt",
+        answerImage: `<img id="answer-image" src="./assets/images/ben-lil-sebastian.gif">`
+    },
+    {
+        question: "Who is Donna Meagle's celebrity cousin?",
+        answers: ["Usher", "Ginuwine", "Ray-J", "Miguel"],
+        correctAnswer: "Ginuwine",
+        answerImage: `<img id="answer-image" src="./assets/images/donna-ginuwine.gif">`
+    },
+    {
+        question: "What has Leslie given Ben as an anniversary gift?",
+        answers: ["A replica of the Iron Throne", "The patent for his board game, Cones of Dunshire", "A scrapbook of their anniversary plans", "Tickets to a Star Wars convention"],
+        correctAnswer: "A replica of the Iron Throne",
+        answerImage: `<img id="answer-image" src="./assets/images/ben-iron-throne.jpg">`
+    },
+    {
+        question: "During a cabin trip, Andy recovered a positive pregnancy test, who's was it?",
+        answers: ["Mona-Lisa Saperstein", "Ann Perkins", "April Ludgate", "Diane Lewis"],
+        correctAnswer: "Diane Lewis",
+        answerImage: `<img id="answer-image" src="./assets/images/diane-ron-wedding.gif">`
+    },
+    {
+        question: "While Ben is unemployeed, he dabbles in clamation. What is the name of Ben's clamation project?",
+        answers: ["A requiem for a Tuesday", "The Cones of Dunshire", "A sleepless night", "Legends of garth"],
+        correctAnswer: "A requiem for a Tuesday",
+        answerImage: `<img id="answer-image" src="./assets/images/a-requiem-for-a-tuesday.gif">`
+    },
+    {
+        question: "A food tasting left Ben, Chris and Ron sick the next day. What was the dish?",
+        answers: ["Macaroni and Cheese", "Cheesecake", "Lobster Bisque", "Calzone"],
+        correctAnswer: "A requiem for a Tuesday",
+        answerImage: `<img id="answer-image" src="./assets/images/calzones-sick.png">`
+    },
+    {
+        question: "Who shot Ron in the head during a hunting trip?",
+        answers: ["Leslie Knope", "Tom Haverford", "Donna Meagle", "Larry Geirgich"],
+        correctAnswer: "Tom Haverford",
+        answerImage: `<img id="answer-image" src="./assets/images/ron-shot.jpg">`
+    },
 ]
+
 let i = 0
 let correctAnswersCount = 0
 let wrongAnswersCount = 0
@@ -38,10 +81,12 @@ let answerImage = gameArray[i].answerImage
 
 //function to get question, function call is in HTML
 const getQuestion = _ => {
+    //there are no more questions, then end game and show results
     if (i >= gameArray.length) {
+        clearInterval()
         document.querySelector('#question-box').innerHTML = `<h1>Game over! Here's your score:</h1>`
         document.querySelector('#answer-box').innerHTML = `<h1>Correct Answers: ${correctAnswersCount} / ${gameArray.length} <br><br> Wrong Answers: ${wrongAnswersCount} / ${gameArray.length} <br><br> Missed Answers: ${unansweredCount} / ${gameArray.length}</h1>`
-        document.querySelector('#timer-box').innerHTML = `<h3 id="play-again">Play Again</h3>`
+        document.querySelector('#timer-box').innerHTML = `<h4 id="play-again">Play Again</h4>`
     }
     else {
         timer = 16
@@ -68,7 +113,7 @@ const displayTimer = _ => {
             i++
             document.querySelector('#question-box').innerHTML = '<h1> Too slow. The correct answer is ' + correctAnswer
             document.querySelector('#answer-box').innerHTML = answerImage
-            document.querySelector('#next-question').innerHTML = '<h3 class="next-button">Next Question</h3>'
+            document.querySelector('#next-question').innerHTML = '<h4 class="next-button">Next Question</h4>'
             document.querySelector('#timer-box').innerHTML = ``
             clearInterval(myTimer)
         }
@@ -81,14 +126,14 @@ const checkUserGuess = _ => {
             correctAnswersCount++
             document.querySelector('#question-box').innerHTML = '<h1>That is Correct!</h1>'
             document.querySelector('#answer-box').innerHTML = answerImage
-            document.querySelector('#next-question').innerHTML = '<h3 class="next-button">Next Question</h3>'
+            document.querySelector('#next-question').innerHTML = '<h4 class="next-button">Next Question</h4>'
             document.querySelector('#timer-box').innerHTML = ``
         }
         else if (event.target.innerHTML !== correctAnswer && event.target.className === 'answer') {
             wrongAnswersCount++
             document.querySelector('#question-box').innerHTML = '<h1> Wrong! The correct answer is ' + correctAnswer
             document.querySelector('#answer-box').innerHTML = answerImage
-            document.querySelector('#next-question').innerHTML = '<h3 class="next-button">Next Question</h3>'
+            document.querySelector('#next-question').innerHTML = '<h4 class="next-button">Next Question</h4>'
             document.querySelector('#timer-box').innerHTML = ``
         }
         i++

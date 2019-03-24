@@ -50,8 +50,7 @@ h3, h4 {
 }
 
 h4:hover {
-    opacity: 0.8;
-    font-size: 27pt;
+    border: 2px solid white;
 }
 
 #answer-image {
